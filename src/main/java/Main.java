@@ -11,7 +11,7 @@ import java.util.Iterator;
 public class Main {
     public static void main(String[] args) throws Exception {
         // Load HDT file NOTE: Use loadIndexedHDT() if you are doing ?P?, ?PO, ??O queries
-        HDT hdt = HDTManager.loadHDT("D:/Roderick/Documents/Master/5 KRW/milestone4/rdflearning/src/main/java/mappingbased-dbpedia.en.2015-10.hdt", null);
+        HDT hdt = HDTManager.loadHDT("C:\\Users\\cel_w\\Downloads\\mappingbased-dbpedia.en.2015-10.hdt", null);
 
         // Enumerate all triples. Empty string means "any"
         IteratorTripleString it = hdt.search("", "", "");
@@ -28,5 +28,6 @@ public class Main {
             CharSequence str = itPred.next();
             System.out.println(str);
         }
+
     }
 }
