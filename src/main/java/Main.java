@@ -3,7 +3,7 @@ import org.rdfhdt.hdt.hdt.HDTManager;
 import org.rdfhdt.hdt.triples.IteratorTripleString;
 import org.rdfhdt.hdt.triples.TripleString;
 
-import java.util.Iterator;
+//import java.util.Iterator;
 import java.util.Random;
 import java.util.ArrayList;
 import static java.lang.Math.toIntExact;
@@ -11,13 +11,11 @@ import static java.lang.Math.toIntExact;
 /**
  * Created by cel_w on 5/18/2017.
  */
-public class Main {
-    public static void main(String[] args) throws Exception {
-        // Load HDT file NOTE: Use loadIndexedHDT() if you are doing ?P?, ?PO, ??O queries
-        HDT hdt = HDTManager.loadHDT("../mappingbased-dbpedia.en.2015-10.hdt", null);
-        Random rand = new Random();
+public class Main {	
+	public static void randomWalk(HDT hdt, CharSequence movieTitle) throws Exception {
+		Random rand = new Random();
         
-    	CharSequence newNode = "http://dbpedia.org/resource/Kiss_Kiss_Bang_Bang";
+    	CharSequence newNode = movieTitle;
     	
         int j = 0;
         ArrayList<CharSequence> randomWalk = new ArrayList<CharSequence>();
@@ -30,9 +28,9 @@ public class Main {
 
         	try{
 				it = hdt.search(newNode.toString(), "", "");
-	            System.out.println("Estimated number of results: "+it.estimatedNumResults()+" --- "+newNode.toString());
+//	            System.out.println("Estimated number of results: "+it.estimatedNumResults()+" --- "+newNode.toString());
         	}catch (org.rdfhdt.hdt.exceptions.NotFoundException e){
-        		System.out.println(newNode.toString() + " has zero outgoing edges.");
+//        		System.out.println(newNode.toString() + " has zero outgoing edges.");
         		randomWalk.remove(newNode.toString());
         		randomWalk.remove(predicate);
         	}
@@ -48,14 +46,26 @@ public class Main {
 	            	newNode = ts.getObject();
 	        		randomWalk.add(predicate);
 	        		randomWalk.add(newNode.toString());
-	                System.out.print("\nTrying ");
-	                System.out.println(newNode);
+//	                System.out.print("\nTrying ");
+//	                System.out.println(newNode);
 	            }
 	        }
         }
-        System.out.println("\nThe randomwalk:");
         for(int i = 0; i < randomWalk.size(); i++){
-            System.out.println(randomWalk.get(i));	
+            System.out.print(randomWalk.get(i));
+            System.out.print(" -> ");
+        }
+        System.out.println('\n');
+	}
+	
+    public static void main(String[] args) throws Exception {
+        // Load HDT file NOTE: Use loadIndexedHDT() if you are doing ?P?, ?PO, ??O queries
+        HDT hdt = HDTManager.loadHDT("../mappingbased-dbpedia.en.2015-10.hdt", null);
+        CharSequence movieTitle = "http://dbpedia.org/resource/Kiss_Kiss_Bang_Bang";
+
+        System.out.println("The randomwalks:");
+        for(int i = 0; i < 10; i++){
+            randomWalk(hdt, movieTitle);
         }
 
     }
