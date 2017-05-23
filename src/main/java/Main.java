@@ -148,14 +148,11 @@ public class Main {
 	
     public static void main(String[] args) throws Exception {
         HDT hdt = HDTManager.loadHDT("../mappingbased-dbpedia.en.2015-10.hdt", null);
-        
         ArrayList<CharSequence> movieURIs = readFile();
-        
         int nMovies = 10;
         int nRandomWalks = 100;
         int maxRandomWalkLength = 8;
         ArrayList<ArrayList<CharSequence>> allRandomWalks = createRandomWalks(hdt, movieURIs, nMovies, nRandomWalks, maxRandomWalkLength);
-        
         writeRandomWalksToFile("../superSmallRandomWalks.txt", allRandomWalks);
     }
 }
