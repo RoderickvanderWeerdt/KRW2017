@@ -17,7 +17,8 @@ class word2vec:
                 new_words_list.append(word)
                 new_labels_list.append(self.labels[index])
             except KeyError:
-                print("Word in labeled file but not in model (random paths): " + word)
+                continue
+                # print("Word in labeled file but not in model (random paths): " + word)
         self.words = new_words_list
         self.labels = new_labels_list
         return word_vectors
