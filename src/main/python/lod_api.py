@@ -31,9 +31,6 @@ def main(endpoint, filepath_train):
         print(response.content)
         time.sleep(1)
 
-#http://purl.org/dc/elements/1.0/Title
-#http%3A//purl.org/dc/elements/1.0/Title
-
 main(endpoint_subject, filepath_movies_train)
 
 request_retry(endpoint=endpoint_subject)
