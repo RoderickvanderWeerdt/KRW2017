@@ -51,12 +51,12 @@ def generate_walk(word, endpoint):
 def main(endpoint, filepath_train):
     tsv_reader = tsvr.tsvReader(filepath_train)
     words, labels = tsv_reader.retrieve_words_and_labels()
-    f = open('random_walks_py.txt', 'w')
-    faulty_count =  0
+    f = open('random_walks_py2.txt', 'w')
+    faulty_count = 0
     total_count = 0
-    for word in words:
+    for word_index, word in enumerate(words):
         total_count += 1
-        for j in range(1000):
+        for j in range(1):
             random_walk = []
             used_word = word
             for i in range(8):
@@ -70,6 +70,7 @@ def main(endpoint, filepath_train):
                 faulty_count += 1
                 continue
             else:
+                print(len(random_walk)/3)
                 f.write(str(random_walk) + '\n')
         print('%s to go' % (1384-total_count))
     print('total count : %s' % total_count)
