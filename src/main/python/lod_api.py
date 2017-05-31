@@ -4,7 +4,7 @@ import re
 import random
 import tsv_reader as tsvr
 
-endpoint_subject = 'http://webscale.cc:3001/default?'
+endpoint_subject = 'http://webscale.cc:3001/LOD-a-lot?'
 filepath_movies_train = "../../../../mc-movies.pruned.train.tsv"
 
 
@@ -51,12 +51,12 @@ def generate_walk(word, endpoint):
 def main(endpoint, filepath_train):
     tsv_reader = tsvr.tsvReader(filepath_train)
     words, labels = tsv_reader.retrieve_words_and_labels()
-    f = open('random_walks_py_all5.txt', 'w')
+    f = open('random_walks_py_all7.txt', 'w')
     faulty_count = 0
     total_count = 0
     for word_index, word in enumerate(words):
         total_count += 1
-        if 1384-total_count < 1031:
+        if 1384-total_count < 949:
             for j in range(1000):
                 random_walk = []
                 used_word = word
