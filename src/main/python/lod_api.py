@@ -28,7 +28,7 @@ def generate_walk(word, endpoint):
     param_obj = {'object': word}
     response_obj = requests.get(endpoint, params=param_obj)
     end_time_call = time.time()
-    time_call = start_time_call - end_time_call
+    time_call = end_time_call - start_time_call
     if '<!DOCTYPE html>' in response_obj.content:
         response_obj = []
     if response_obj == [] and response_sub == []:
@@ -54,14 +54,14 @@ def generate_walk(word, endpoint):
 def main(endpoint, filepath_train):
     tsv_reader = tsvr.tsvReader(filepath_train)
     words, labels = tsv_reader.retrieve_words_and_labels()
-    f = open('random_walks_py_all9.txt', 'w')
+    f = open('random_walks_py_all11.txt', 'w')
     faulty_count = 0
     total_count = 0
     start_time = time.time()
     call_time = 0
     for word_index, word in enumerate(words):
         total_count += 1
-        if 1384-total_count < 827:
+        if 1384-total_count < 798:
             for j in range(1000):
                 random_walk = []
                 used_word = word
@@ -78,7 +78,7 @@ def main(endpoint, filepath_train):
                     continue
                 else:
                     f.write(str(random_walk) + '\n')
-            total_time = start_time - time.time()
+            total_time = time.time() - start_time
             system_time = total_time - call_time
             print('%s to go' % (1384-total_count))
             print('[Total time: %s]' % total_time)

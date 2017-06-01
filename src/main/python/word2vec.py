@@ -35,7 +35,7 @@ class word2vec:
         # words already preprocessed and separated by whitespace.
         if self.phase == 'train':
             sentences = genw2v.LineSentence(self.filepath)
-            model = genw2v.Word2Vec(sentences, size=100, window=5, min_count=1, workers=4)
+            model = genw2v.Word2Vec(sentences, size=100, window=5, min_count=1, workers=4, sg=1)
             model.save('w2v_model.sav')
         else:
             model = genw2v.Word2Vec.load('w2v_model.sav')
