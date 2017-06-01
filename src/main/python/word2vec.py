@@ -10,6 +10,7 @@ class word2vec:
         word_vectors = []
         new_words_list = []
         new_labels_list = []
+        not_there_count = 0
         for index, word in enumerate(self.words):
             # try every word in the model, if model does not have this word as a key it is not used for SVM
             try:
@@ -18,9 +19,13 @@ class word2vec:
                 new_labels_list.append(self.labels[index])
             except KeyError:
                 continue
-                # print("Word in labeled file but not in model (random paths): " + word)
+                not_there_count += 1
         self.words = new_words_list
         self.labels = new_labels_list
+        recall = not_there_count/len(self.words)
+        print('[Not there count: %s]' % not_there_count)
+        print('[All word count: %s]' % len(self.words))
+        print('[Word2Vec Recall: %s]' % recall)
         return word_vectors
 
     def create_wordvectors(self):

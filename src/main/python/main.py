@@ -3,7 +3,7 @@ import tsv_reader as tsvr
 import svm
 import time
 
-filepath_random_walks = "../../../../superSmallRandomWalks.txt"
+filepath_random_walks = "random_walks_api.txt"
 filepath_movies_train = "../../../../mc-movies.pruned.train.tsv"
 filepath_movies_test = "../../../../mc-movies.pruned.test.tsv"
 
